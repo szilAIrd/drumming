@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Back behind the kit: a 12-month drumming roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#EDF0F2; --panel:#FFFFFF; --ink:#15212A; --muted:#55636D; --rule:#CBD3D9;
+  --cell:#DCE2E6; --cellb:#CDD5DA;
+  --hat:#C58A1B; --snare:#2C5FB4; --kick:#C4402E;
+  --hat-t:#8A5F0C; --snare-t:#22508F; --kick-t:#A5301F;
+  --dock-bg:#15212A; --dock-ink:#EDF0F2;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F171D; --panel:#17222A; --ink:#E7EDF1; --muted:#9AA9B3; --rule:#2B3944;
+    --cell:#23313B; --cellb:#2C3B46;
+    --hat:#E0A63A; --snare:#6C9BEB; --kick:#EE6F5C;
+    --hat-t:#E0A63A; --snare-t:#8DB2F0; --kick-t:#F28C7C;
+    --dock-bg:#E7EDF1; --dock-ink:#0F171D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F171D; --panel:#17222A; --ink:#E7EDF1; --muted:#9AA9B3; --rule:#2B3944;
+  --cell:#23313B; --cellb:#2C3B46;
+  --hat:#E0A63A; --snare:#6C9BEB; --kick:#EE6F5C;
+  --hat-t:#E0A63A; --snare-t:#8DB2F0; --kick-t:#F28C7C;
+  --dock-bg:#E7EDF1; --dock-ink:#0F171D;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,'Times New Roman',serif;font-size:18px;line-height:1.65;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4,.sans,button,th,.nav a,.chip,label{font-family:'Archivo','Helvetica Neue',Arial,system-ui,sans-serif}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1;font-weight:800;font-stretch:118%;letter-spacing:-.02em;margin:0 0 .3em}
+h2{font-size:clamp(1.6rem,3.6vw,2.15rem);line-height:1.1;font-weight:750;font-stretch:108%;letter-spacing:-.01em;margin:0 0 .5em}
+h3{font-size:1.2rem;line-height:1.25;font-weight:700;margin:1.8em 0 .4em}
+h4{font-size:1rem;font-weight:700;margin:1.4em 0 .3em}
+p{margin:0 0 1em;max-width:68ch}
+a{color:var(--snare-t);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--snare);outline-offset:2px}
+code,.mono,pre{font-family:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace}
+ul,ol{padding-left:1.25em;margin:0 0 1em;max-width:68ch}
+li{margin:.3em 0}
+strong{font-weight:650}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.hero{padding:56px 0 24px}
+.hero .sub{font-family:'Archivo',system-ui,sans-serif;font-size:1.15rem;color:var(--muted);margin:0 0 1.2em;font-weight:500}
+.hero .lede{font-size:1.2rem;max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin:1.4rem 0 2rem;border-top:2px solid var(--ink)}
+.facts div{padding:12px 16px 12px 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-family:'Archivo',sans-serif;font-weight:700;font-size:.95rem}
+.facts dd{margin:0;color:var(--muted);font-size:.98rem;line-height:1.45}
+
+/* Groove player */
+.lab{background:var(--panel);border:2px solid var(--ink);border-radius:10px;padding:20px 20px 14px;margin-bottom:8px}
+.lab h2{margin:0 0 .15em;font-size:1.5rem}
+.lab-top{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.lab-top p{margin:0;color:var(--muted);font-size:.98rem;max-width:52ch}
+.transport{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.btn{font-weight:650;font-size:1rem;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer;min-height:44px}
+.btn.primary{background:var(--ink);color:var(--bg);min-width:96px}
+.btn:hover{background:var(--cellb)}
+.btn.primary:hover{background:var(--ink);opacity:.88}
+.tempo{display:flex;align-items:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:600}
+.tempo button{width:44px;height:44px;border-radius:8px;border:2px solid var(--ink);background:transparent;color:var(--ink);font-size:1.3rem;cursor:pointer;line-height:1}
+.tempo output{min-width:2.6ch;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:1.3rem}
+.chk{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:500}
+.chk input{width:20px;height:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:1.5px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:.9rem;font-weight:550;cursor:pointer;min-height:36px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seqwrap{overflow-x:auto;padding-bottom:6px}
+.seq{--n:16;min-width:560px}
+.row{display:grid;grid-template-columns:64px repeat(var(--n),minmax(0,1fr));gap:4px;align-items:center;margin-bottom:4px}
+.row.head{margin-bottom:2px}
+.hl{font-family:'IBM Plex Mono',monospace;font-size:.72rem;text-align:center;color:var(--muted);line-height:1}
+.hl.b{color:var(--ink);font-weight:500;font-size:.85rem}
+.rowlabel{font-weight:650;font-size:.9rem;text-align:left;background:none;border:0;color:var(--ink);padding:8px 0;cursor:pointer;min-height:36px}
+.rowlabel[aria-pressed="true"]{text-decoration:line-through;opacity:.5}
+.rowlabel::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;background:var(--c)}
+.row[data-r="hh"]{--c:var(--hat)}.row[data-r="sd"]{--c:var(--snare)}.row[data-r="bd"]{--c:var(--kick)}
+.cell{min-height:38px;border-radius:5px;border:2px solid transparent;background:var(--cell);cursor:pointer;padding:0}
+.cell.b{background:var(--cellb)}
+.cell[data-v="1"]{background:var(--c);border-color:var(--c)}
+.cell[data-v="2"]{background:transparent;border-color:var(--c);box-shadow:inset 0 0 0 4px var(--panel), inset 0 0 0 20px color-mix(in srgb,var(--c) 35%,transparent)}
+.cell.now{outline:3px solid var(--ink);outline-offset:1px}
+.hl.now{color:var(--ink);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.88rem;color:var(--muted);margin:10px 0 0;font-family:'Archivo',sans-serif}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend .l1::before{background:var(--muted)}
+.legend .l2::before{border:2px solid var(--muted);background:color-mix(in srgb,var(--muted) 35%,transparent)}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;padding-top:32px;padding-bottom:120px}
+.nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:.95rem}
+.nav ul{list-style:none;margin:0;padding:0}
+.nav li{margin:0}
+.nav a{display:block;padding:6px 0 6px 12px;color:var(--muted);text-decoration:none;border-left:2px solid var(--rule);font-weight:550}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--ink);border-left-color:var(--ink)}
+.nav .grp{font-weight:700;font-size:.8rem;color:var(--muted);margin:14px 0 2px;padding-left:12px}
+main section{padding:36px 0 12px;border-top:2px solid var(--ink);margin-top:28px}
+main section:first-child{margin-top:0}
+.scroll{overflow-x:auto;margin:0 0 1.4em;border:1px solid var(--rule);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.93rem;line-height:1.45}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+th{font-weight:700;font-size:.85rem;background:var(--cell);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:650;white-space:nowrap;font-family:'Archivo',sans-serif}
+td.wide{min-width:200px}
+.callout{background:var(--panel);border-left:6px solid var(--kick);padding:14px 18px;margin:1.2em 0;border-radius:0 8px 8px 0;max-width:68ch}
+.callout p:last-child{margin-bottom:0}
+.callout.blue{border-left-color:var(--snare)}
+.callout.gold{border-left-color:var(--hat)}
+.goal{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin:1em 0 1.4em}
+.goal h4{margin-top:0}
+.goal ul{margin-bottom:0}
+dl.methods{margin:0 0 1em;max-width:68ch}
+dl.methods dt{font-family:'Archivo',sans-serif;font-weight:700;margin-top:1.1em}
+dl.methods dd{margin:.15em 0 0}
+pre.tab{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:0 0 1.2em;max-width:100%}
+
+/* Session timeline */
+.timeline{display:flex;gap:3px;margin:1.2em 0 .6em;font-family:'Archivo',sans-serif;font-size:.85rem;font-weight:600}
+.timeline div{padding:10px 8px;border-radius:6px;color:#fff;min-width:0;line-height:1.25}
+.timeline small{display:block;font-weight:500;font-size:.78rem;opacity:.95}
+.t1{background:#8A5F0C}.t2{background:#22508F}.t3{background:#A5301F}.t4{background:#3F5361}.t5{background:#5A6A75}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .t1{background:#946612}
+  :root:not([data-theme="light"]) .t2{background:#2F5FA8}
+  :root:not([data-theme="light"]) .t3{background:#B3402F}
+}
+
+/* Groove cards */
+.groove-list{display:grid;gap:14px;margin:1em 0}
+.gcard{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;align-items:start}
+.gcard h3{margin:0 0 .15em;font-size:1.05rem}
+.gcard p{margin:0;font-size:.95rem;color:var(--muted);max-width:none}
+.gcard .mini{grid-column:1 / -1;overflow-x:auto}
+.mg{display:grid;gap:2px;min-width:340px}
+.mgrow{display:grid;grid-template-columns:22px repeat(var(--n),1fr);gap:2px;align-items:center}
+.mgrow b{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:500;color:var(--muted)}
+.mgc{height:12px;border-radius:2px;background:var(--cell)}
+.mgc.b{background:var(--cellb)}
+.mgc[data-v="1"]{background:var(--c)}
+.mgc[data-v="2"]{background:color-mix(in srgb,var(--c) 40%,var(--cell));outline:1.5px solid var(--c);outline-offset:-1.5px}
+.mgrow[data-r="hh"]{--c:var(--hat)}.mgrow[data-r="sd"]{--c:var(--snare)}.mgrow[data-r="bd"]{--c:var(--kick)}
+
+/* Tracker */
+.heat{overflow-x:auto;padding:4px 0 10px}
+.heat-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,16px);gap:3px;width:max-content}
+.day{width:16px;height:16px;border-radius:3px;border:1px solid var(--rule);background:var(--panel);padding:0;cursor:pointer}
+.day[aria-pressed="true"]{background:var(--kick);border-color:var(--kick)}
+.phases-key{display:flex;gap:0;width:max-content;font-family:'Archivo',sans-serif;font-size:.8rem;font-weight:600;margin-bottom:4px}
+.phases-key span{border-left:2px solid var(--ink);padding-left:6px;white-space:nowrap;overflow:hidden}
+.stat{font-family:'Archivo',sans-serif;font-weight:600;margin:.4em 0 1.2em}
+.ms{list-style:none;padding:0;margin:0 0 1.2em;max-width:none}
+.ms li{margin:.5em 0}
+.ms label{display:flex;gap:10px;align-items:flex-start;font-family:'Source Serif 4',Georgia,serif;font-weight:400;cursor:pointer}
+.ms input{width:20px;height:20px;margin-top:4px;flex:none}
+
+/* Dock */
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--dock-bg);color:var(--dock-ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:none;align-items:center;gap:10px 16px;flex-wrap:wrap;z-index:20;font-family:'Archivo',sans-serif}
+.dock.show{display:flex}
+.dock button{font-family:inherit;font-weight:650;border:2px solid var(--dock-ink);background:transparent;color:var(--dock-ink);border-radius:8px;min-height:40px;padding:4px 14px;cursor:pointer}
+.dock .dname{flex:1 1 140px;font-weight:650;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock output{font-family:'IBM Plex Mono',monospace;min-width:3ch;text-align:center}
+.dock .tb{display:flex;align-items:center;gap:6px}
+.dock .tb button{padding:0;width:40px}
+
+footer{max-width:68ch;color:var(--muted);font-size:.92rem;padding-bottom:40px}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);margin:0 -24px;padding:8px 24px;border-bottom:1px solid var(--rule);overflow-x:auto}
+  .nav ul{display:flex;gap:4px;width:max-content}
+  .nav a{border-left:0;border-bottom:2px solid transparent;padding:6px 10px;white-space:nowrap}
+  .nav a:hover,.nav a[aria-current="true"]{border-bottom-color:var(--ink)}
+  .nav .grp{display:none}
+  body{font-size:17px}
+  .timeline{flex-wrap:wrap}
+  .timeline div{flex:1 1 30% !important}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>Back behind the kit</h1>
+    <p class="sub">A 12-month drumming roadmap for 30 minutes a day</p>
+    <p class="lede">You already have two years of lessons in your hands. This plan rebuilds technique, time and vocabulary in short daily sessions, then turns them into actual music. Press play to hear the first groove you'll rebuild, and tap the cells to change it.</p>
+    <dl class="facts">
+      <div><dt>Time</dt><dd>30 minutes a day, six days a week, plus an optional light day</dd></div>
+      <div><dt>Length</dt><dd>52 weeks in four phases, each with a checkpoint</dd></div>
+      <div><dt>Gear</dt><dd>Sticks, practice pad, metronome, a kit (acoustic or electronic), a phone to record with</dd></div>
+      <div><dt>Method</dt><dd>Deliberate practice, tempo ladders, rudiments, reading, groove first</dd></div>
+    </dl>
+
+    <div class="lab" id="lab" role="region" aria-label="Groove player">
+      <div class="lab-top">
+        <div>
+          <h2>Groove player</h2>
+          <p id="grooveNote">Loading…</p>
+        </div>
+        <div class="transport">
+          <button class="btn primary" id="play" type="button">Play</button>
+          <div class="tempo" role="group" aria-label="Tempo">
+            <button type="button" id="bpmDown" aria-label="Slower by 4">−</button>
+            <output id="bpmOut" aria-live="off">80</output><span>bpm</span>
+            <button type="button" id="bpmUp" aria-label="Faster by 4">+</button>
+          </div>
+          <label class="chk"><input type="checkbox" id="clickChk" checked> Beat click</label>
+        </div>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Choose a groove"></div>
+      <div class="seqwrap"><div class="seq" id="grid"></div></div>
+      <div class="legend">
+        <span class="l1">Note</span>
+        <span class="l2">Open hi-hat or ghost note (soft)</span>
+        <span>Tap a row name to mute it and play that limb yourself</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="wrap layout">
+  <nav class="nav" aria-label="Sections">
+    <ul>
+      <li class="grp">Foundations</li>
+      <li><a href="#method">The methods</a></li>
+      <li><a href="#setup">Setup and gear</a></li>
+      <li><a href="#baseline">Baseline test</a></li>
+      <li><a href="#session">The 30-minute session</a></li>
+      <li class="grp">The roadmap</li>
+      <li><a href="#phase1">Phase 1: Rebuild</a></li>
+      <li><a href="#phase2">Phase 2: Vocabulary</a></li>
+      <li><a href="#phase3">Phase 3: Independence</a></li>
+      <li><a href="#phase4">Phase 4: Musician</a></li>
+      <li class="grp">Toolbox</li>
+      <li><a href="#library">Exercise library</a></li>
+      <li><a href="#grooves">Groove library</a></li>
+      <li><a href="#fills">Fill library</a></li>
+      <li><a href="#songs">Songs by phase</a></li>
+      <li><a href="#trouble">When things go wrong</a></li>
+      <li><a href="#resources">Books and tools</a></li>
+      <li><a href="#tracker">Progress tracker</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+<!-- ============ METHODS ============ -->
+<section id="method">
+  <h2>The methods behind the plan</h2>
+  <p>Nothing here is exotic. The plan combines a few well-established ideas from motor-skill research and from generations of drum teaching, arranged so they fit into half an hour.</p>
+  <dl class="methods">
+    <dt>Deliberate practice</dt>
+    <dd>Work on one specific target just beyond your current ability, get feedback, adjust, repeat. This is the core finding of Anders Ericsson's research on expert performance. In this plan every block has one target ("paradiddles clean at 72 bpm"), and you check it by ear and by video.</dd>
+    <dt>The metronome, always</dt>
+    <dd>Time is a drummer's first job. Playing with a click builds an internal pulse; recording shows where you drift. You'll also practise without the click on purpose (gap click, below) so the pulse becomes yours.</dd>
+    <dt>The tempo ladder</dt>
+    <dd>Start at a speed where the pattern is easy, add 4 bpm after clean repetitions, hold or step back after mistakes. Slow, accurate practice builds the right motion; speed follows.</dd>
+    <dt>Rudiments and sticking vocabulary</dt>
+    <dd>The standard rudiments and the patterns in George L. Stone's <em>Stick Control</em> are the alphabet of hand technique. Fills, grooves and solos are built from them.</dd>
+    <dt>Relaxed, rebound-based stroke technique</dt>
+    <dd>Modern teaching, influenced by the Moeller tradition, treats the stick as something that bounces: you lift, let it fall, and let it rebound. Tension caps your speed and causes injuries. Each session starts with relaxed strokes for this reason.</dd>
+    <dt>Reading and syncopation</dt>
+    <dd>Ted Reed's <em>Progressive Steps to Syncopation for the Modern Drummer</em> has been a standard for decades: one page of rhythms you can read, orchestrate on the kit and use to build independence.</dd>
+    <dt>Groove first, chops second</dt>
+    <dd>Most playing situations reward a steady, musical groove far more than fast hands. Phase 1 to 3 build both, but grooves and songs appear from week 1.</dd>
+    <dt>Interleaving and spaced repetition</dt>
+    <dd>Rotating the focus by day (hands, feet, reading, grooves, fills) and returning to older material leads to better long-term retention than practising one thing in a single block. The weekly rotation is built for this.</dd>
+    <dt>Recording yourself</dt>
+    <dd>Video and audio show tension, uneven strokes and time problems that are invisible while playing. You'll record every Saturday and compare against your baseline at checkpoints.</dd>
+    <dt>Consistency and rest</dt>
+    <dd>Thirty minutes six days a week is about 150 to 170 hours over the year. Short daily sessions with sleep in between consolidate skill better than one long weekly session. The light day is for recovery, not a loophole.</dd>
+  </dl>
+  <div class="callout blue">
+    <p><strong>How to use this document.</strong> Read the setup, baseline and session sections once. Then follow the current phase's weekly table day by day, use the exercise library as a reference, and tick days off in the tracker at the bottom. The tempos and targets are guidelines. If something takes longer, stay on it. Finishing a phase on time matters less than finishing it cleanly.</p>
+  </div>
+</section>
+
+<!-- ============ SETUP ============ -->
+<section id="setup">
+  <h2>Setup and gear</h2>
+  <h3>What you need</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Item</th><th>What to get</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Sticks</td><td class="wide">A pair of 5A or 7A wooden-tip sticks</td><td>The standard all-round size. Use the same pair for pad and kit so the feel transfers.</td></tr>
+      <tr><td>Practice pad</td><td class="wide">A 12-inch pad (rubber or gum rubber), ideally with a stand</td><td>Quiet, portable, and honest: it shows every flaw in your strokes. Most of your hand work happens here.</td></tr>
+      <tr><td>Metronome</td><td class="wide">An app or device with adjustable subdivisions and, ideally, a "gap" or "silent bar" mode</td><td>You will use it in every session. Headphones help if you can't hear it over the kit.</td></tr>
+      <tr><td>Hearing protection</td><td class="wide">Musician's earplugs with a flat frequency response</td><td>A kit can reach harmful volumes at the drummer's ears. Protect your hearing from day one.</td></tr>
+      <tr><td>Recorder</td><td class="wide">Your phone plus a cheap tripod or a stack of books</td><td>Weekly video is a core part of the feedback loop.</td></tr>
+      <tr><td>Practice log</td><td class="wide">A notebook or spreadsheet: date, focus, exercise, tempo reached, one note</td><td>You want proof of progress and a record of which tempo to start from tomorrow.</td></tr>
+      <tr><td>Books</td><td class="wide">Stick Control (Stone) and Progressive Steps to Syncopation for the Modern Drummer (Reed) to start</td><td>Used from Phase 1. More books are listed in the resources section.</td></tr>
+    </tbody>
+  </table></div>
+  <p>If noise is a constraint, do your hand work on the pad, and use an electronic kit, mesh heads or low-volume cymbals for the kit blocks. A quiet setup you use daily beats a loud one you avoid.</p>
+
+  <h3>Kit and body position</h3>
+  <ul>
+    <li><strong>Throne:</strong> high enough that your thighs slope slightly downward from hips to knees. Too low locks your hips and pushes you into your feet.</li>
+    <li><strong>Snare:</strong> at a height where your forearms angle slightly downward to the head and your shoulders stay relaxed. Not so high that you lift your elbows.</li>
+    <li><strong>Hi-hat and cymbals:</strong> reachable without stretching. Nothing should force your wrists to bend sharply.</li>
+    <li><strong>Feet:</strong> the pedals close enough that your heels can rest or lift without your knees being pulled up or out.</li>
+    <li><strong>Posture:</strong> sit tall, back neutral, shoulders down. Check yourself on video.</li>
+  </ul>
+  <h3>Grip</h3>
+  <p>You probably learned matched grip. Hold the stick about a third of the way up from the butt, with the fulcrum between thumb and index finger. The back fingers wrap loosely and are used to add control and power. Think of holding a small bird: firm enough that it can't fly away, gentle enough that you don't hurt it. If the stick feels like it is fighting you, the grip is too tight.</p>
+  <div class="callout gold">
+    <p>This is general practice guidance, not medical advice. If you feel sharp pain, numbness or tingling in your hands, wrists, forearms or back, stop playing, and get it checked by a professional before continuing.</p>
+  </div>
+</section>
+
+<!-- ============ BASELINE ============ -->
+<section id="baseline">
+  <h2>Baseline test (Week 0)</h2>
+  <p>Before Phase 1, spend one 30-minute session on this test. Film it. You are not aiming for a grade; you are creating a starting point to compare against at the end of Phases 1 to 4.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Test</th><th>How</th><th>Record</th></tr></thead>
+    <tbody>
+      <tr><td>Single strokes</td><td class="wide">Pad, 16th notes, one minute, even volume and timing. Start at 60 bpm and go up in steps of 4 until it stops feeling clean.</td><td>Fastest clean tempo</td></tr>
+      <tr><td>Double strokes</td><td class="wide">Pad, 8th notes (RRLL), same procedure, starting at 50 bpm.</td><td>Fastest clean tempo</td></tr>
+      <tr><td>Paradiddles</td><td class="wide">Pad, 16th notes, starting at 60 bpm.</td><td>Fastest clean tempo</td></tr>
+      <tr><td>Basic rock beat</td><td class="wide">Kit, 8th-note hi-hat, kick on 1 and 3, snare on 2 and 4, at 80 bpm. Two minutes with no stopping or slowing.</td><td>Steady? Y/N. Where did it wobble?</td></tr>
+      <tr><td>Fill and landing</td><td class="wide">Four bars of groove, then a one-bar fill and a crash on beat 1. Four attempts.</td><td>How many landed on time</td></tr>
+      <tr><td>Reading</td><td class="wide">First page of Syncopation on the snare at 60 bpm, counting aloud.</td><td>Mistakes per line</td></tr>
+    </tbody>
+  </table></div>
+  <p>Write the numbers down. Watch the video once with the sound on and once with the sound off, looking only at your hands, shoulders and grip.</p>
+</section>
+
+<!-- ============ SESSION ============ -->
+<section id="session">
+  <h2>The 30-minute session</h2>
+  <p>Every session has the same skeleton. What goes inside each block changes by day and phase, but you never have to decide how to spend your time.</p>
+  <div class="timeline" role="img" aria-label="Session split: warm-up 5 minutes, technique 8, kit 8, application 6, play 3">
+    <div class="t1" style="flex:5">Warm-up<small>5 min</small></div>
+    <div class="t2" style="flex:8">Technique<small>8 min, pad</small></div>
+    <div class="t3" style="flex:8">Kit<small>8 min</small></div>
+    <div class="t4" style="flex:6">Application<small>6 min</small></div>
+    <div class="t5" style="flex:3">Play<small>3 min</small></div>
+  </div>
+  <h3>The five blocks</h3>
+  <dl class="methods">
+    <dt>1. Warm-up (5 min, pad)</dt>
+    <dd>Shake out and stretch your forearms for 30 seconds. Then one minute each of single strokes, double strokes and paradiddles at a comfortable tempo, and one minute of stroke-height control (below). The goal is relaxation, not speed. Finish with 30 seconds of shaking out.</dd>
+    <dt>2. Technique (8 min, pad)</dt>
+    <dd>The day's hand work: sticking patterns, rudiments or accent control. Use the tempo ladder. One or two patterns only, played with full attention.</dd>
+    <dt>3. Kit (8 min)</dt>
+    <dd>Grooves, kick patterns, hi-hat foot and independence. Add limbs one at a time: hands first, then kick, then hi-hat foot.</dd>
+    <dt>4. Application (6 min)</dt>
+    <dd>Use today's material in context: reading, fills, or a song section. This is where technique becomes music.</dd>
+    <dt>5. Play (3 min)</dt>
+    <dd>Play along with a song or make up grooves over a click. Saturday's play block is recorded. Spend the last 30 seconds writing your log line.</dd>
+  </dl>
+  <h3>Weekly rhythm</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Day</th><th>Emphasis</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Monday</td><td class="wide">Hands</td><td>Fresh start for the week's hardest technical work.</td></tr>
+      <tr><td>Tuesday</td><td class="wide">Feet and independence</td><td>Give the hands a variation while the feet catch up.</td></tr>
+      <tr><td>Wednesday</td><td class="wide">Reading</td><td>Brain-heavy day; reading trains coordination too.</td></tr>
+      <tr><td>Thursday</td><td class="wide">Grooves and songs</td><td>Time and feel, with a musical goal.</td></tr>
+      <tr><td>Friday</td><td class="wide">Fills and dynamics</td><td>Putting hands and kit together in phrases.</td></tr>
+      <tr><td>Saturday</td><td class="wide">Play and record</td><td>Review, run-throughs and video feedback.</td></tr>
+      <tr><td>Sunday</td><td class="wide">Light day (optional, 10 to 15 minutes)</td><td>Free play, listening, tapping along to a drummer you love, or full rest.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Ground rules</h3>
+  <ul>
+    <li><strong>One target per block.</strong> If you try to fix five things, you fix none.</li>
+    <li><strong>Start slower than your ego wants.</strong> Ladder up from a tempo where the pattern is easy.</li>
+    <li><strong>Stop and reset if you tense up.</strong> Shake out your hands, drop the tempo, breathe.</li>
+    <li><strong>Never miss twice.</strong> One skipped day is fine. Two in a row starts a habit change.</li>
+    <li><strong>The minimum session is 10 minutes:</strong> the warm-up plus one exercise from today's technique block. On a bad day this still keeps the habit alive.</li>
+    <li><strong>Always end with something fun.</strong> The last three minutes are yours.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 1 ============ -->
+<section id="phase1">
+  <h2>Phase 1: Rebuild (weeks 1 to 8)</h2>
+  <div class="goal">
+    <h4>Goals</h4>
+    <ul>
+      <li>Relaxed, even single strokes, doubles and paradiddles with the metronome.</li>
+      <li>Steady 8th-note rock grooves with four kick variations.</li>
+      <li>Read simple quarter- and 8th-note rhythms.</li>
+      <li>Play a four-bar phrase with a fill, landing on the downbeat.</li>
+    </ul>
+  </div>
+  <p><strong>Warm-up for this phase:</strong> singles, doubles and paradiddles at 60 bpm, then stroke-height control. Grooves referred to below are in the <a href="#grooves">groove library</a>, fills in the <a href="#fills">fill library</a>.</p>
+  <h3>Weekly template</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Day</th><th>Technique (8, pad)</th><th>Kit (8)</th><th>Application (6)</th><th>Play (3)</th></tr></thead>
+    <tbody>
+      <tr><td>Mon: Hands</td><td class="wide">Single strokes in 16ths, ladder from 60. Then accent one note in every four.</td><td class="wide">Groove 1 (basic rock): hi-hat and snare first, then add kick.</td><td class="wide">Read the opening pages of Syncopation on snare at 60, counting aloud.</td><td class="wide">Groove 1 with the click on beats 2 and 4 only.</td></tr>
+      <tr><td>Tue: Feet</td><td class="wide">Double strokes in 8ths, ladder from 50.</td><td class="wide">Grooves 1 to 3: change the kick pattern under steady 8th hi-hat. Heel-down technique.</td><td class="wide">Hi-hat foot on beats 2 and 4 while your hands play quarter notes on snare.</td><td class="wide">Groove 2 along to a song.</td></tr>
+      <tr><td>Wed: Reading</td><td class="wide">Paradiddles in 16ths, ladder from 60.</td><td class="wide">Read Syncopation with 8th-note hi-hat, kick on 1 and 3 and the left hand reading on snare.</td><td class="wide">Say the rhythm aloud ("1 and 2 and"), then play it.</td><td class="wide">Make up a four-bar groove over the click.</td></tr>
+      <tr><td>Thu: Grooves</td><td class="wide">Repeat the weakest sticking pattern from Mon to Wed.</td><td class="wide">Groove 3 (half-time) and Groove 4 (disco with open hi-hat).</td><td class="wide">Three bars of groove, then a one-beat fill, repeated eight times.</td><td class="wide">Song from the Phase 1 list.</td></tr>
+      <tr><td>Fri: Fills</td><td class="wide">Sticking for fills: RLRL on the pad in 8ths, then 16ths.</td><td class="wide">Fills 1 and 2 at 70 to 90 bpm.</td><td class="wide">Groove with a fill on bar 4, crash on beat 1. Eight repeats.</td><td class="wide">Song section with fills.</td></tr>
+      <tr><td>Sat: Play</td><td class="wide">Ladder the week's weakest pattern once.</td><td class="wide">Four grooves, 90 seconds each, no stopping.</td><td class="wide">A full song section (verse and chorus).</td><td class="wide">Record 60 seconds. Watch it and note one thing to fix.</td></tr>
+      <tr><td>Sun: Light</td><td colspan="4">Free play, listening or rest. Ten minutes is plenty.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Week by week</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Week</th><th>Hands (16ths, bpm)</th><th>Kit</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="wide">Singles 60 · Doubles 50 · Paradiddles 60</td><td class="wide">Groove 1 at 70</td><td class="wide">Setup, baseline test, film everything.</td></tr>
+      <tr><td>2</td><td class="wide">Singles 66 · Doubles 56 · Para 60</td><td class="wide">Groove 1 at 80, quarter-note fills</td><td class="wide">Focus on relaxed strokes.</td></tr>
+      <tr><td>3</td><td class="wide">Singles 72 · Doubles 60 · Para 66</td><td class="wide">Groove 2 at 80</td><td class="wide">Learn to feel the click as the pulse, not a judge.</td></tr>
+      <tr><td>4</td><td class="wide">Singles 76 · Doubles 66 · Para 72</td><td class="wide">Groove 3 at 70</td><td class="wide">Checkpoint: film the baseline test again and compare.</td></tr>
+      <tr><td>5</td><td class="wide">Hold or improve week 4 numbers</td><td class="wide">Groove 4 at 90, Fill 1</td><td class="wide">Start reading with kick and hi-hat.</td></tr>
+      <tr><td>6</td><td class="wide">Singles 80 · Doubles 72 · Para 76. Introduce flams (slow).</td><td class="wide">Fills 1 and 2</td><td class="wide">Ghost of a recap: repeat the weakest exercise twice a week.</td></tr>
+      <tr><td>7</td><td class="wide">Consolidate</td><td class="wide">Grooves at 100, phrase with a fill on bar 4</td><td class="wide">Play two full songs from the list.</td></tr>
+      <tr><td>8</td><td colspan="3">Phase 1 checkpoint (below). Repeat any failed item another week, then move on.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="goal">
+    <h4>Phase 1 checkpoint</h4>
+    <ul>
+      <li>Singles 80 · Doubles 72 · Paradiddles 76 (16ths), clean for one minute.</li>
+      <li>Basic rock beat at 100 bpm for three minutes with the click.</li>
+      <li>Four different kick patterns under 8th-note hi-hat at 90 bpm.</li>
+      <li>A four-bar phrase with a fill and a crash on beat 1, four times in a row.</li>
+      <li>First page of Syncopation at 80 bpm.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section id="phase2">
+  <h2>Phase 2: Vocabulary (weeks 9 to 20)</h2>
+  <div class="goal">
+    <h4>Goals</h4>
+    <ul>
+      <li>Learn the essential rudiments: rolls, flams, drags and paradiddle variations.</li>
+      <li>Play 16th-note grooves, ghost notes and a shuffle in a triplet feel.</li>
+      <li>Read 16th-note rhythms from Syncopation and orchestrate them around the kit.</li>
+      <li>Develop dynamic control: real difference between loud, medium and soft.</li>
+    </ul>
+  </div>
+  <p><strong>Warm-up for this phase:</strong> singles, doubles and paradiddles at 80 bpm, then stroke-height control. From now on, add "gap click" once a week: two bars with the metronome, two bars without.</p>
+  <h3>Weekly template</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Day</th><th>Technique (8, pad)</th><th>Kit (8)</th><th>Application (6)</th><th>Play (3)</th></tr></thead>
+    <tbody>
+      <tr><td>Mon: Hands</td><td class="wide">Stone-style patterns with accents (RLRR LRLL, accent moves) plus the rudiment of the fortnight.</td><td class="wide">Groove 5 (16th hi-hat rock), ladder from 60.</td><td class="wide">Syncopation 16th-note pages on snare, counting "1 e and a".</td><td class="wide">16th groove along to a song.</td></tr>
+      <tr><td>Tue: Feet</td><td class="wide">Doubles in 16ths, ladder from 60.</td><td class="wide">Kick variations under 16th hi-hat. Hi-hat foot on 2 and 4.</td><td class="wide">Kick reads the Syncopation rhythms while hands keep 8ths and backbeat.</td><td class="wide">Song from the Phase 2 list.</td></tr>
+      <tr><td>Wed: Reading</td><td class="wide">Double paradiddle and paradiddle-diddle.</td><td class="wide">Groove 6 (funk with ghost notes) at 60.</td><td class="wide">Syncopation with snare ghost notes; try early patterns from Realistic Rock.</td><td class="wide">Free play over the click.</td></tr>
+      <tr><td>Thu: Grooves</td><td class="wide">Rudiment of the fortnight, slow and relaxed.</td><td class="wide">Groove 7 (shuffle): count triplets aloud, then play.</td><td class="wide">Song section with fills at bars 4 and 8.</td><td class="wide">Shuffle or funk song.</td></tr>
+      <tr><td>Fri: Fills</td><td class="wide">Flam family on pad, 60 to 80 bpm.</td><td class="wide">Fills 3 and 4 (16ths around the kit, paradiddle fill).</td><td class="wide">Eight-bar phrases alternating two fills.</td><td class="wide">Song section.</td></tr>
+      <tr><td>Sat: Play</td><td class="wide">Ladder weakest pattern.</td><td class="wide">Five grooves, two minutes each, no stopping.</td><td class="wide">Full song.</td><td class="wide">Record and review.</td></tr>
+      <tr><td>Sun: Light</td><td colspan="4">Optional. Free play or listening. Try tapping along to a groove you can't play yet.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Rudiment of the fortnight</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Weeks</th><th>Rudiments</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>9 to 10</td><td class="wide">Five-stroke roll, seven-stroke roll</td><td>Even, relaxed at 60 bpm</td></tr>
+      <tr><td>11 to 12</td><td class="wide">Flam, flam tap</td><td>Clear flam (soft grace note, main note louder) at 60 bpm</td></tr>
+      <tr><td>13 to 14</td><td class="wide">Flam accent, drag (ruff)</td><td>At 60 bpm</td></tr>
+      <tr><td>15 to 16</td><td class="wide">Paradiddle-diddle</td><td>At 70 bpm</td></tr>
+      <tr><td>17 to 18</td><td class="wide">Double and triple paradiddle</td><td>At 70 bpm</td></tr>
+      <tr><td>19 to 20</td><td class="wide">Review all rudiments so far</td><td>Play each for 30 seconds</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Focus by block of weeks</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Weeks</th><th>Kit focus</th><th>Reading focus</th></tr></thead>
+    <tbody>
+      <tr><td>9 to 11</td><td class="wide">16th-note hi-hat groove (Groove 5). Introduce ghost notes at 60 bpm.</td><td class="wide">Syncopation 16th-note pages, snare only.</td></tr>
+      <tr><td>12 to 14</td><td class="wide">Funk groove with ghost notes (Groove 6): 60 to 80 bpm. 16th-note fills.</td><td class="wide">Reading with hi-hat 8ths and kick.</td></tr>
+      <tr><td>15 to 17</td><td class="wide">Shuffle (Groove 7), triplet counting, triplet fills.</td><td class="wide">Read triplets on the pad.</td></tr>
+      <tr><td>18 to 20</td><td class="wide">Dynamics: play each groove at three volume levels. Learn two full songs.</td><td class="wide">Review pages, faster tempo.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="goal">
+    <h4>Phase 2 checkpoint</h4>
+    <ul>
+      <li>Singles 100 · Doubles 88 · Paradiddles 96 (16ths).</li>
+      <li>Five rudiments clean at 70 to 80 bpm.</li>
+      <li>Funk groove with ghost notes at 80 bpm for three minutes.</li>
+      <li>Shuffle at 90 bpm for three minutes.</li>
+      <li>Play two full songs from the Phase 2 list with the recording.</li>
+      <li>Compare your baseline video with a new one. Note three visible improvements.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section id="phase3">
+  <h2>Phase 3: Independence and style (weeks 21 to 36)</h2>
+  <div class="goal">
+    <h4>Goals</h4>
+    <ul>
+      <li>Four-way independence: the hands and feet play different patterns without effort.</li>
+      <li>Jazz ride pattern with hi-hat foot on 2 and 4, plus light comping.</li>
+      <li>Basic odd-meter feel: 5/4, 6/8 and 7/8 or 7/4.</li>
+      <li>Linear grooves, more control over the hi-hat, faster hands.</li>
+    </ul>
+  </div>
+  <p><strong>Warm-up for this phase:</strong> singles, doubles and paradiddles at 90 bpm, then stroke-height control. Gap-click work becomes a weekly habit.</p>
+  <h3>Weekly template</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Day</th><th>Technique (8, pad)</th><th>Kit (8)</th><th>Application (6)</th><th>Play (3)</th></tr></thead>
+    <tbody>
+      <tr><td>Mon: Hands</td><td class="wide">16th-note singles ladder from 100. Move sticking patterns between snare and toms.</td><td class="wide">Linear groove of the week (no two limbs play at the same time).</td><td class="wide">Syncopation with hi-hat foot on 2 and 4 added.</td><td class="wide">Groove of the week over the click.</td></tr>
+      <tr><td>Tue: Feet</td><td class="wide">Doubles at 16ths, ladder from 80.</td><td class="wide">Single-pedal double strokes on kick (8ths at 60 bpm). Kick patterns with 16ths.</td><td class="wide">Hi-hat foot on all four quarters while the hands play a groove.</td><td class="wide">Song from the Phase 3 list.</td></tr>
+      <tr><td>Wed: Reading</td><td class="wide">Rudiment review: two rudiments, 30 seconds each.</td><td class="wide">Independence: ostinato on the hi-hat or ride, kick and snare read rhythms from Syncopation.</td><td class="wide">Say one line while playing another, if you are ready.</td><td class="wide">Free play in the style of the week.</td></tr>
+      <tr><td>Thu: Style</td><td class="wide">Triplet and swing sticking on pad.</td><td class="wide">Style of the week: swing ride, odd meter, or linear funk.</td><td class="wide">Song section in that style.</td><td class="wide">Song.</td></tr>
+      <tr><td>Fri: Fills and dynamics</td><td class="wide">Accent patterns moved around the kit.</td><td class="wide">Fills that start off the beat; fills that end on beat 1 and 3.</td><td class="wide">Eight-bar phrase with fills of different lengths.</td><td class="wide">Song section.</td></tr>
+      <tr><td>Sat: Play</td><td class="wide">Ladder weakest pattern.</td><td class="wide">Three styles, two minutes each.</td><td class="wide">Full song, no stopping.</td><td class="wide">Record and review.</td></tr>
+      <tr><td>Sun: Light</td><td colspan="4">Optional. Listen to a jazz or funk drummer and tap the pulse.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Focus by block of weeks</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Weeks</th><th>Focus</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>21 to 24</td><td class="wide">Four-way independence</td><td class="wide">Hi-hat foot on 2 and 4 with all previous grooves. Add kick syncopations one at a time. If you want a challenge, try reading exercises from Gary Chester's The New Breed.</td></tr>
+      <tr><td>25 to 28</td><td class="wide">Swing and jazz ride</td><td class="wide">Ride pattern (Groove 8) with hi-hat foot on 2 and 4. Snare comping from Syncopation, kept soft. Aim for a relaxed, uneven triplet feel.</td></tr>
+      <tr><td>29 to 32</td><td class="wide">Odd meters and polyrhythms</td><td class="wide">Play 5/4 and 7/4 as groupings of 3+2 and 4+3; 6/8 as two groups of three. Try 3 over 2 (hand plays three, foot plays two).</td></tr>
+      <tr><td>33 to 36</td><td class="wide">Linear grooves and speed</td><td class="wide">Speed work on singles and doubles at higher tempos; open and closed hi-hat control; consolidation.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="goal">
+    <h4>Phase 3 checkpoint</h4>
+    <ul>
+      <li>Singles 116 · Doubles 104 · Paradiddles 112 (16ths).</li>
+      <li>Swing ride with hi-hat foot at 120 bpm for two minutes.</li>
+      <li>5/4 groove at 100 bpm for two minutes.</li>
+      <li>A Syncopation page with hi-hat ostinato and kick/snare reading at 70 bpm.</li>
+      <li>A linear groove at 80 bpm.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PHASE 4 ============ -->
+<section id="phase4">
+  <h2>Phase 4: Musician (weeks 37 to 52)</h2>
+  <div class="goal">
+    <h4>Goals</h4>
+    <ul>
+      <li>A repertoire of at least ten songs you can play start to finish with a recording.</li>
+      <li>Transcribe grooves and fills by ear.</li>
+      <li>Play an eight-bar solo or fill idea over a click or backing track.</li>
+      <li>Play with other musicians (a jam, a friend, or a backing track) at least a few times.</li>
+    </ul>
+  </div>
+  <p><strong>Technique maintenance:</strong> keep the warm-up at 100 bpm. Rudiments and tempo ladders stay in the plan but shrink in time; more of the session goes to music.</p>
+  <h3>Weekly template</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Day</th><th>Focus</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>Mon</td><td class="wide">Technique maintenance</td><td class="wide">Two rudiments from the list, plus the weakest number in the tracker. Ladder for 8 minutes. Kit: a groove from a new style.</td></tr>
+      <tr><td>Tue</td><td class="wide">Repertoire</td><td class="wide">Learn a new song section by section. Play it through slowly.</td></tr>
+      <tr><td>Wed</td><td class="wide">Transcription</td><td class="wide">Slow a recording down and write out one groove or fill. Play your version against the original.</td></tr>
+      <tr><td>Thu</td><td class="wide">Creative</td><td class="wide">Invent four- and eight-bar fills and solo ideas over a click. Use a small number of ideas and develop them.</td></tr>
+      <tr><td>Fri</td><td class="wide">Weak spot</td><td class="wide">Choose whatever hurts most: tempo, feel, a groove, reading. Work on it for the whole session.</td></tr>
+      <tr><td>Sat</td><td class="wide">Performance run</td><td class="wide">Three songs with no stopping, recorded. Watch and take notes.</td></tr>
+      <tr><td>Sun</td><td class="wide">Light day</td><td class="wide">Free play, jam with a track, or rest.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Four-week cycle (repeat three times)</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Week</th><th>Main project</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="wide">Learn one new song</td><td>Play it start to finish with the recording</td></tr>
+      <tr><td>B</td><td class="wide">Transcribe one groove and one fill</td><td>Notation or a written note, plus your own recording</td></tr>
+      <tr><td>C</td><td class="wide">Compose an eight-bar solo or fill idea</td><td>Play it in time over a backing track</td></tr>
+      <tr><td>D</td><td class="wide">Review week</td><td>Record a performance run, compare to previous month, choose next month's goals</td></tr>
+    </tbody>
+  </table></div>
+  <div class="goal">
+    <h4>Phase 4 checkpoint (week 52)</h4>
+    <ul>
+      <li>Ten songs played start to finish, recorded and reviewed.</li>
+      <li>Baseline test repeated: compare every number and the video with week 0.</li>
+      <li>Play with another musician or a backing track at least three times.</li>
+      <li>Choose the next 12-month direction (see below).</li>
+    </ul>
+  </div>
+  <h3>After month 12</h3>
+  <p>Choose one direction and go deeper. Rock or pop: work through Realistic Rock and play with a band. Funk: transcribe and study linear and ghost-note grooves. Jazz: Jim Chapin's Advanced Techniques for the Modern Drummer and swing comping. Technique: Joe Morello's Master Studies. A teacher for even a monthly session will speed up whichever route you take.</p>
+</section>
+
+<!-- ============ LIBRARY ============ -->
+<section id="library">
+  <h2>Exercise library</h2>
+
+  <h3>Stroke-height control</h3>
+  <p>The basis of dynamics. On the pad, play RLRL in 8ths, with accents at 9 inches and unaccented notes at 2 inches. Start slowly, then repeat with other accent patterns. The unaccented notes should always be quiet.</p>
+  <ul>
+    <li><strong>Full stroke:</strong> starts high, ends high. Loud, then back up.</li>
+    <li><strong>Down stroke:</strong> starts high, stops low. Loud, then quiet.</li>
+    <li><strong>Tap:</strong> starts low, stops low. Quiet, controlled.</li>
+    <li><strong>Up stroke:</strong> starts low, ends high. Quiet, then loud.</li>
+  </ul>
+
+  <h3>Sticking patterns</h3>
+  <pre class="tab">Single stroke roll    R L R L R L R L
+Double stroke roll    R R L L R R L L
+Single paradiddle     R L R R   L R L L
+Double paradiddle     R L R L R R   L R L R L L
+Triple paradiddle     R L R L R L R R   L R L R L R L L
+Paradiddle-diddle     R L R R L L
+Five-stroke roll      R R L L R   (then L L R R L)
+Seven-stroke roll     R R L L R R L   (then L L R R L L R)
+Flam                  lR   rL      (small letter = soft grace note)
+Flam tap              lR R   rL L
+Flam accent           lR L R   rL R L
+Drag (ruff)           llR   rrL</pre>
+  <p>Practise every pattern starting with the right hand, then the left. Play them at a slow tempo, then use the ladder. Move them around the kit once they are relaxed.</p>
+
+  <h3>Accent patterns</h3>
+  <p>Play a steady stream of 16ths and accent one note in each group of four, then move the accent through all four positions. Then repeat with accents on every third note. The unaccented notes stay low.</p>
+  <pre class="tab">Accent on 1:   R l r l   R l r l   (capital = accent)
+Accent on 2:   r L r l   r L r l
+Accent on 3:   r l R l   r l R l
+Accent on 4:   r l r L   r l r L</pre>
+
+  <h3>The tempo ladder</h3>
+  <ol>
+    <li>Choose a tempo where you can play the pattern perfectly, relaxed, four times in a row.</li>
+    <li>Play four clean repetitions, then raise the metronome by 4 bpm.</li>
+    <li>If you make a mistake, repeat the same tempo. After two misses in a row, drop back 4 bpm.</li>
+    <li>When you can't stay relaxed, stop climbing. Play the last clean tempo twice more, and log it.</li>
+    <li>Start the next session about 8 bpm lower than your log so you build up cleanly again.</li>
+  </ol>
+
+  <h3>Metronome games</h3>
+  <ul>
+    <li><strong>Click on 2 and 4 only:</strong> the click becomes the backbeat; you supply the rest.</li>
+    <li><strong>Click on 1 only:</strong> tests your ability to keep time through the bar.</li>
+    <li><strong>Gap click:</strong> two bars with the click, two bars silent. Do you still land on the click when it returns?</li>
+    <li><strong>Subdivision switching:</strong> play quarters, then 8ths, then triplets, then 16ths, one bar each, without changing the tempo.</li>
+    <li><strong>Half-speed check:</strong> if a pattern isn't perfect, play it at half tempo for a minute before trying again.</li>
+  </ul>
+
+  <h3>Feet</h3>
+  <ul>
+    <li><strong>Heel-down:</strong> heel rests on the pedal, ankle drives the beater. Controlled and accurate; best for early work.</li>
+    <li><strong>Heel-up:</strong> heel lifted, the whole leg drives. More power and speed. Use it once heel-down feels relaxed.</li>
+    <li><strong>Hi-hat foot:</strong> practise "chick" on 2 and 4 with the hands quiet, then add a groove. Listen to the foot; it is a real part of the groove.</li>
+    <li><strong>Kick patterns:</strong> play a steady 8th-note hi-hat with a backbeat, and change only the kick. Use these:</li>
+  </ul>
+  <pre class="tab">1 + 2 + 3 + 4 +
+X . . . X . . .    kick on 1 and 3
+X . . . . . X .    kick on 1 and the + of 3? no: on 1 and the + of 2... see note
+X . . . X . X .    kick on 1, 3, and the + of 3
+X . X . . . X .    kick on 1, the + of 1... see note</pre>
+  <p class="mono" style="font-size:.85rem;max-width:68ch">Note: rather than counting these, set them up in the groove player above and listen. Tap a cell in the kick row to try your own patterns, then play them on the kit.</p>
+
+  <h3>Coordination and independence</h3>
+  <ul>
+    <li><strong>Add one limb at a time:</strong> hands only, then kick, then hi-hat foot. If a limb falls apart, remove it and rebuild.</li>
+    <li><strong>Ostinato plus reading:</strong> keep a steady hi-hat or ride pattern with the right hand and read a Syncopation line with the left hand, plus a fixed kick pattern.</li>
+    <li><strong>Sing or count aloud:</strong> speaking the pulse while playing keeps your internal count honest.</li>
+    <li><strong>Orchestration:</strong> after reading a line on snare, play the same rhythm on kick, then toms, then split between limbs.</li>
+  </ul>
+
+  <h3>Reading</h3>
+  <ul>
+    <li>Say the rhythm aloud with counting before you play it.</li>
+    <li>Read one line at a time, at a tempo where you don't stop. Keep your eyes moving ahead of your hands.</li>
+    <li>Use Syncopation page by page: first on snare, then with kick on 1 and 3, then with hi-hat foot, then with a hi-hat or ride ostinato.</li>
+    <li>Don't repeat a page until you can read it without practising it. Switch pages regularly.</li>
+  </ul>
+</section>
+
+<!-- ============ GROOVES ============ -->
+<section id="grooves">
+  <h2>Groove library</h2>
+  <p>Each groove has a mini grid. Press "Hear it" to load it into the groove player. The player then stays with you at the bottom of the screen. Slow it down, mute one limb, and play that limb yourself. Then play the whole groove.</p>
+  <div class="groove-list" id="grooveList"></div>
+</section>
+
+<!-- ============ FILLS ============ -->
+<section id="fills">
+  <h2>Fill library</h2>
+  <p>A fill is a short phrase that leads to the next section and lands on a crash and kick on beat 1. Learn each fill slowly on the pad or snare first, then move it around the toms. Use "+" for the "and". Sticking is R L unless stated.</p>
+  <pre class="tab">Fill 1: two beats of 8ths (beats 3 and 4)
+   3   +   4   +  | 1
+   SD  SD  T1  T2 | CR+BD
+
+Fill 2: 16ths on beat 4 only
+   4  e  +  a   | 1
+   SD SD T1 FT  | CR+BD
+   R  L  R  L
+
+Fill 3: 16ths around the kit, one beat per drum
+   1        2        3        4
+   SD x4    T1 x4    T2 x4    FT x4    (RLRL on each drum)
+
+Fill 4: paradiddle fill, 16ths
+   R L R R  L R L L  (start on SD, move to T1, T2, FT)
+
+Fill 5: triplet fill (two beats)
+   R L R  L R L   (1st triplet on SD, 2nd on T1)
+
+Fill 6: flam accent fill
+   lR L R  rL R L   (flams on the snare and toms)</pre>
+  <p>Add each fill to your groove at the end of a four-bar phrase: three bars of groove, one bar of fill, crash on 1. Then try two-bar fills, and then fills that start on the "and" of a beat.</p>
+</section>
+
+<!-- ============ SONGS ============ -->
+<section id="songs">
+  <h2>Songs by phase</h2>
+  <p>Choose songs you enjoy and check the tempo before starting. These are ideas, not a required list. Use a slow-down tool to learn tricky parts.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Phase</th><th>Ideas</th><th>What it trains</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="wide">Back in Black (AC/DC); Billie Jean (Michael Jackson); Seven Nation Army (The White Stripes)</td><td class="wide">Steady time, simple backbeat, a basic fill.</td></tr>
+      <tr><td>2</td><td class="wide">Superstition (Stevie Wonder); Get Lucky (Daft Punk); Pride and Joy (Stevie Ray Vaughan) for a shuffle</td><td class="wide">16ths, ghost notes, funk feel, shuffle.</td></tr>
+      <tr><td>3</td><td class="wide">Take Five (Dave Brubeck Quartet); Money (Pink Floyd); a swing standard of your choice</td><td class="wide">Odd meters, swing feel, hi-hat foot.</td></tr>
+      <tr><td>4</td><td class="wide">Funky Drummer (James Brown); Rosanna (Toto); songs from your favourite drummer</td><td class="wide">Feel, nuance and stamina. Study and transcribe.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ TROUBLE ============ -->
+<section id="trouble">
+  <h2>When things go wrong</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Problem</th><th>Likely cause</th><th>Try this</th></tr></thead>
+    <tbody>
+      <tr><td>Left hand weaker</td><td class="wide">Right-hand dominance; the patterns are always started with the right</td><td class="wide">Start half of your patterns with the left. Play lead-left grooves. Use a mirror or video to check the left-hand rebound.</td></tr>
+      <tr><td>Rushing</td><td class="wide">Tension, pushing the tempo to feel excitement, or the click seems slow</td><td class="wide">Practice with click on 2 and 4 only. Play gap click. Slow down by 10 to 15 bpm and relax your shoulders.</td></tr>
+      <tr><td>Tension or pain</td><td class="wide">Grip too tight, wrong setup height, too much speed too soon</td><td class="wide">Reduce tempo and stroke height. Check the throne and snare height. Take a rest day. Persistent pain: stop and consult a professional.</td></tr>
+      <tr><td>Plateau</td><td class="wide">Same exercises at the same tempo for too long</td><td class="wide">Drop the tempo by 10%, change the pattern, take two days off, then film yourself and look for a new problem.</td></tr>
+      <tr><td>Boredom</td><td class="wide">Too much technique, too little music</td><td class="wide">Lengthen the Play block. Learn a song you love. Play with a backing track.</td></tr>
+      <tr><td>Can't hear the click</td><td class="wide">Volume of the kit</td><td class="wide">Use headphones, or a click with a sharper sound. Try clicks on every subdivision for a while.</td></tr>
+      <tr><td>Noise complaints</td><td class="wide">Acoustic kit in shared building</td><td class="wide">Do the hands on the pad. Use mesh heads or an electronic kit. Practice at agreed hours.</td></tr>
+      <tr><td>Missed days</td><td class="wide">Life</td><td class="wide">Don't make up the time. Restart with the minimum 10-minute session and continue with the plan.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section id="resources">
+  <h2>Books and tools</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Resource</th><th>Use</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td>Stick Control for the Snare Drummer (George L. Stone)</td><td class="wide">Sticking patterns for hand technique and control.</td><td>Phase 1 onward</td></tr>
+      <tr><td>Progressive Steps to Syncopation for the Modern Drummer (Ted Reed)</td><td class="wide">Reading and independence from a large bank of rhythms.</td><td>Phase 1 onward</td></tr>
+      <tr><td>Groove Essentials (Tommy Igoe)</td><td class="wide">Groove concepts and play-along material.</td><td>Phase 2 onward</td></tr>
+      <tr><td>Realistic Rock (Carmine Appice)</td><td class="wide">Rock grooves and kick patterns.</td><td>Phase 2</td></tr>
+      <tr><td>Master Studies (Joe Morello)</td><td class="wide">Advanced hand technique and control.</td><td>After Phase 3</td></tr>
+      <tr><td>The New Breed (Gary Chester)</td><td class="wide">Coordination through reading and singing while playing.</td><td>Phase 3 (optional)</td></tr>
+      <tr><td>Advanced Techniques for the Modern Drummer (Jim Chapin)</td><td class="wide">Jazz independence.</td><td>After Phase 3 (optional)</td></tr>
+      <tr><td>Peak (Anders Ericsson and Robert Pool)</td><td class="wide">The research behind deliberate practice.</td><td>Any time</td></tr>
+      <tr><td>Rudiment charts (PAS 40 International Drum Rudiments)</td><td class="wide">The full list of rudiments with correct sticking.</td><td>Phase 2 onward</td></tr>
+      <tr><td>Slow-down software (for example Transcribe! or Amazing Slow Downer)</td><td class="wide">Slow recordings without changing pitch, for transcription.</td><td>Phase 2 onward</td></tr>
+      <tr><td>A teacher</td><td class="wide">A lesson every four to eight weeks for feedback on grip, posture and time. Feedback is the fastest way to fix habits you can't see.</td><td>Any time</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ TRACKER ============ -->
+<section id="tracker">
+  <h2>Progress tracker</h2>
+  <p>Each square is a day, arranged in 52 columns of weeks. Tap a square when you have practised. Your progress is saved in this browser if storage is available. If your browser blocks storage, the tracker works but won't remember anything after you close the page.</p>
+  <div class="heat" aria-label="Practice tracker">
+    <div class="phases-key" id="phaseKey"></div>
+    <div class="heat-grid" id="heat"></div>
+  </div>
+  <p class="stat" id="stat">Days logged: 0</p>
+  <h3>Milestones</h3>
+  <ul class="ms" id="ms"></ul>
+  <button class="btn" type="button" id="reset">Clear tracker</button>
+</section>
+
+<footer>
+  <p>Tempos and targets are general guidance and will vary by person. If you have an existing injury or pain when playing, talk to a health professional. Have a great year.</p>
+</footer>
+
+  </main>
+</div>
+
+<div class="dock" id="dock" role="region" aria-label="Groove player controls">
+  <button type="button" id="dPlay">Play</button>
+  <span class="dname" id="dName">Groove</span>
+  <div class="tb"><button type="button" id="dDown" aria-label="Slower by 4">−</button><output id="dBpm">80</output><button type="button" id="dUp" aria-label="Faster by 4">+</button></div>
+  <button type="button" id="dOpen">Open grid</button>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var ROWS=[['hh','Hi-hat'],['sd','Snare'],['bd','Kick']];
+  function parse(s){return s.split('').map(function(c){return c==='x'?1:(c==='o'?2:0);});}
+
+  var GROOVES=[
+    {id:'rock',name:'1. Basic rock beat',steps:16,bpm:80,phase:'Phase 1',
+     hh:'x.x.x.x.x.x.x.x.',sd:'....x.......x...',bd:'x.......x.......',
+     note:'8th-note hi-hat, kick on 1 and 3, snare on 2 and 4. The foundation.'},
+    {id:'rock2',name:'2. Rock, kick on 1 and the + of 3',steps:16,bpm:80,phase:'Phase 1',
+     hh:'x.x.x.x.x.x.x.x.',sd:'....x.......x...',bd:'x.........x.....',
+     note:'Same backbeat, the second kick moves later. Feel how the groove leans forward.'},
+    {id:'rock3',name:'3. Rock, kick on 1, 3 and the + of 3',steps:16,bpm:80,phase:'Phase 1',
+     hh:'x.x.x.x.x.x.x.x.',sd:'....x.......x...',bd:'x.......x.x.....',
+     note:'Three kick notes per bar. Keep the hi-hat steady.'},
+    {id:'half',name:'4. Half-time',steps:16,bpm:70,phase:'Phase 1',
+     hh:'x.x.x.x.x.x.x.x.',sd:'........x.......',bd:'x...............',
+     note:'Snare only on beat 3. The tempo feels half as fast, though the hi-hat is unchanged.'},
+    {id:'disco',name:'5. Four on the floor with open hi-hat',steps:16,bpm:100,phase:'Phase 1',
+     hh:'x.o.x.o.x.o.x.o.',sd:'....x.......x...',bd:'x...x...x...x...',
+     note:'Kick on every beat, open hi-hat on each +. Keep the open sound short and even.'},
+    {id:'sixteen',name:'6. 16th-note hi-hat rock',steps:16,bpm:70,phase:'Phase 2',
+     hh:'xxxxxxxxxxxxxxxx',sd:'....x.......x...',bd:'x.........x.....',
+     note:'Hi-hat plays every 16th note. Start slow and keep the shoulder relaxed.'},
+    {id:'funk',name:'7. Funk with ghost notes',steps:16,bpm:70,phase:'Phase 2',
+     hh:'xxxxxxxxxxxxxxxx',sd:'...ox..o.o..x..o',bd:'x.....x...x.....',
+     note:'Hollow cells are quiet ghost notes on the snare. Backbeats on 2 and 4 stay loud.'},
+    {id:'shuffle',name:'8. Shuffle (triplet feel)',steps:12,bpm:90,phase:'Phase 2',
+     hh:'x.xx.xx.xx.x',sd:'...x.....x..',bd:'x.....x.....',
+     note:'Count "1-trip-let, 2-trip-let". The hi-hat plays the first and third note of each triplet.'},
+    {id:'swing',name:'9. Swing ride pattern',steps:12,bpm:110,phase:'Phase 3',hhSound:'ride',hhName:'Ride',
+     hh:'x..x.xx..x.x',sd:'............',bd:'o..o..o..o..',
+     note:'Ride cymbal with soft kick feathering on every beat. Add your hi-hat foot on 2 and 4.'}
+  ];
+
+  var cur=GROOVES[0], steps=16, bpm=80, pat={hh:[],sd:[],bd:[]};
+  var playing=false, clickOn=true, used=false, mute={hh:false,sd:false,bd:false};
+  var ctx=null, noiseBuf=null, timer=null, nextT=0, stepI=0, queue=[], shown=-1, rafId=0;
+  var $=function(id){return document.getElementById(id);};
+  var cellsByStep=[];
+
+  /* ---------- Audio ---------- */
+  function ensureCtx(){
+    if(!ctx){var AC=window.AudioContext||window.webkitAudioContext; if(!AC) return false; ctx=new AC();}
+    if(ctx.state==='suspended') ctx.resume();
+    if(!noiseBuf){
+      noiseBuf=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);
+      var d=noiseBuf.getChannelData(0); for(var i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+    }
+    return true;
+  }
+  function noise(t,dur,type,freq,gain){
+    var src=ctx.createBufferSource(); src.buffer=noiseBuf;
+    var f=ctx.createBiquadFilter(); f.type=type; f.frequency.value=freq;
+    var g=ctx.createGain(); g.gain.setValueAtTime(gain,t); g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+    src.connect(f); f.connect(g); g.connect(ctx.destination); src.start(t); src.stop(t+dur+0.02);
+  }
+  function kick(t,soft){
+    var o=ctx.createOscillator(), g=ctx.createGain(), a=soft?0.35:1;
+    o.type='sine'; o.frequency.setValueAtTime(140,t); o.frequency.exponentialRampToValueAtTime(45,t+0.12);
+    g.gain.setValueAtTime(a,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.28);
+    o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t+0.3);
+  }
+  function snare(t,ghost){
+    var a=ghost?0.18:0.7;
+    noise(t,0.18,'highpass',1800,a);
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='triangle'; o.frequency.setValueAtTime(200,t); o.frequency.exponentialRampToValueAtTime(140,t+0.08);
+    g.gain.setValueAtTime(a*0.6,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.12);
+    o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t+0.14);
+  }
+  function hat(t,open){ noise(t,open?0.32:0.05,'highpass',7000,open?0.32:0.28); }
+  function ride(t,open){ noise(t,0.45,'bandpass',6000,open?0.16:0.2); }
+  function beep(t,accent){
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='square'; o.frequency.value=accent?1500:1000;
+    g.gain.setValueAtTime(0.06,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.03);
+    o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t+0.04);
+  }
+
+  /* ---------- Scheduling ---------- */
+  function stepDur(){return 60/bpm/(steps/4);}
+  function sched(i,t){
+    var spb=steps/4;
+    if(clickOn && i%spb===0) beep(t,i===0);
+    if(!mute.hh && pat.hh[i]){ if(cur.hhSound==='ride') ride(t,pat.hh[i]===2); else hat(t,pat.hh[i]===2); }
+    if(!mute.sd && pat.sd[i]) snare(t,pat.sd[i]===2);
+    if(!mute.bd && pat.bd[i]) kick(t,pat.bd[i]===2);
+  }
+  function tick(){
+    while(nextT<ctx.currentTime+0.12){
+      sched(stepI,nextT); queue.push({i:stepI,t:nextT});
+      nextT+=stepDur(); stepI=(stepI+1)%steps;
+    }
+  }
+  function frame(){
+    if(!playing) return;
+    var now=ctx.currentTime, last=-1;
+    while(queue.length && queue[0].t<=now){ last=queue.shift().i; }
+    if(last>=0 && last!==shown){ showNow(last); }
+    rafId=requestAnimationFrame(frame);
+  }
+  function showNow(i){
+    if(shown>=0 && cellsByStep[shown]) cellsByStep[shown].forEach(function(c){c.classList.remove('now');});
+    shown=i;
+    if(i>=0 && cellsByStep[i]) cellsByStep[i].forEach(function(c){c.classList.add('now');});
+  }
+  function start(){
+    if(!ensureCtx()) return;
+    playing=true; used=true; stepI=0; queue=[]; nextT=ctx.currentTime+0.06;
+    clearInterval(timer); timer=setInterval(tick,25); tick();
+    cancelAnimationFrame(rafId); rafId=requestAnimationFrame(frame);
+    updateUI();
+  }
+  function stop(){
+    playing=false; clearInterval(timer); cancelAnimationFrame(rafId); queue=[];
+    showNow(-1); updateUI();
+  }
+
+  /* ---------- UI ---------- */
+  function setBpm(v){ bpm=Math.max(40,Math.min(200,v)); updateUI(); }
+  function updateUI(){
+    $('bpmOut').textContent=bpm; $('dBpm').textContent=bpm;
+    $('play').textContent=playing?'Stop':'Play'; $('dPlay').textContent=playing?'Stop':'Play';
+    $('dName').textContent=cur.name;
+    document.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed',c.dataset.id===cur.id?'true':'false');});
+    var dock=$('dock'); dock.classList.toggle('show',used && !labVisible);
+  }
+  function labelFor(step){
+    var spb=steps/4, k=step%spb;
+    if(k===0) return String(step/spb+1);
+    if(steps===16) return k===1?'e':(k===2?'+':'a');
+    return k===1?'trip':'let';
+  }
+  function renderGrid(){
+    var grid=$('grid'); grid.innerHTML=''; grid.style.setProperty('--n',steps);
+    cellsByStep=[]; for(var s=0;s<steps;s++) cellsByStep.push([]);
+    var spb=steps/4;
+    var head=document.createElement('div'); head.className='row head';
+    head.appendChild(document.createElement('span'));
+    for(var i=0;i<steps;i++){
+      var h=document.createElement('span'); h.className='hl'+(i%spb===0?' b':''); h.textContent=labelFor(i);
+      head.appendChild(h); cellsByStep[i].push(h);
+    }
+    grid.appendChild(head);
+    ROWS.forEach(function(r){
+      var key=r[0], row=document.createElement('div'); row.className='row'; row.dataset.r=key;
+      var lb=document.createElement('button'); lb.type='button'; lb.className='rowlabel';
+      lb.textContent=(key==='hh'&&cur.hhName)?cur.hhName:r[1];
+      lb.setAttribute('aria-pressed',mute[key]?'true':'false');
+      lb.setAttribute('aria-label',lb.textContent+' row, tap to mute or unmute');
+      lb.addEventListener('click',function(){mute[key]=!mute[key];lb.setAttribute('aria-pressed',mute[key]?'true':'false');});
+      row.appendChild(lb);
+      for(var i=0;i<steps;i++){
+        (function(i){
+          var c=document.createElement('button'); c.type='button';
+          c.className='cell'+(i%spb===0?' b':''); c.dataset.v=pat[key][i];
+          c.setAttribute('aria-label',lb.textContent+' step '+(i+1));
+          c.addEventListener('click',function(){
+            var v=pat[key][i], max=(key==='bd')?2:2;
+            v=(v+1)%(max+1); pat[key][i]=v; c.dataset.v=v;
+          });
+          row.appendChild(c); cellsByStep[i].push(c);
+        })(i);
+      }
+      grid.appendChild(row);
+    });
+  }
+  function load(id,autoplay){
+    var g=GROOVES.filter(function(x){return x.id===id;})[0]; if(!g) return;
+    var wasPlaying=playing;
+    cur=g; steps=g.steps; bpm=g.bpm;
+    pat={hh:parse(g.hh),sd:parse(g.sd),bd:parse(g.bd)};
+    $('grooveNote').textContent=g.note;
+    if(playing){ stepI=0; queue=[]; nextT=ctx.currentTime+0.06; }
+    shown=-1; renderGrid(); updateUI();
+    if(autoplay && !wasPlaying) start();
+  }
+  function renderChips(){
+    var box=$('chips');
+    GROOVES.forEach(function(g){
+      var b=document.createElement('button'); b.type='button'; b.className='chip'; b.dataset.id=g.id;
+      b.textContent=g.name.replace(/^\d+\.\s*/,''); b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){load(g.id,false);});
+      box.appendChild(b);
+    });
+  }
+  function miniGrid(g){
+    var n=g.steps, spb=n/4, wrap=document.createElement('div'); wrap.className='mg'; wrap.style.setProperty('--n',n);
+    ROWS.forEach(function(r){
+      var row=document.createElement('div'); row.className='mgrow'; row.dataset.r=r[0]; row.style.setProperty('--n',n);
+      var b=document.createElement('b'); b.textContent={hh:(g.hhName?'Rd':'HH'),sd:'SD',bd:'BD'}[r[0]]; row.appendChild(b);
+      parse(g[r[0]]).forEach(function(v,i){
+        var c=document.createElement('span'); c.className='mgc'+(i%spb===0?' b':''); c.dataset.v=v; row.appendChild(c);
+      });
+      wrap.appendChild(row);
+    });
+    return wrap;
+  }
+  function renderGrooveList(){
+    var list=$('grooveList');
+    GROOVES.forEach(function(g){
+      var card=document.createElement('div'); card.className='gcard';
+      var left=document.createElement('div');
+      var h=document.createElement('h3'); h.textContent=g.name; left.appendChild(h);
+      var p=document.createElement('p'); p.textContent=g.phase+' · '+g.note; left.appendChild(p);
+      card.appendChild(left);
+      var b=document.createElement('button'); b.type='button'; b.className='btn'; b.textContent='Hear it';
+      b.addEventListener('click',function(){ load(g.id,true); if(!playing) start(); });
+      card.appendChild(b);
+      var m=document.createElement('div'); m.className='mini'; m.appendChild(miniGrid(g)); card.appendChild(m);
+      list.appendChild(card);
+    });
+  }
+
+  /* ---------- Wire-up ---------- */
+  var labVisible=true;
+  $('play').addEventListener('click',function(){playing?stop():start();});
+  $('dPlay').addEventListener('click',function(){playing?stop():start();});
+  $('bpmDown').addEventListener('click',function(){setBpm(bpm-4);});
+  $('bpmUp').addEventListener('click',function(){setBpm(bpm+4);});
+  $('dDown').addEventListener('click',function(){setBpm(bpm-4);});
+  $('dUp').addEventListener('click',function(){setBpm(bpm+4);});
+  $('clickChk').addEventListener('change',function(e){clickOn=e.target.checked;});
+  $('dOpen').addEventListener('click',function(){ $('lab').scrollIntoView({behavior:'smooth',block:'start'}); });
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ labVisible=es[0].isIntersecting; updateUI(); },{threshold:0.05}).observe($('lab'));
+  }
+
+  renderChips(); renderGrooveList(); load('rock',false);
+
+  /* ---------- Nav highlight ---------- */
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
+  if('IntersectionObserver' in window){
+    var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.removeAttribute('aria-current');});
+          var a=document.querySelector('.nav a[href="#'+e.target.id+'"]'); if(a) a.setAttribute('aria-current','true');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s);});
+  }
+
+  /* ---------- Tracker ---------- */
+  var KEY='drum-roadmap-v1', store={days:{},ms:{}};
+  try{ var raw=localStorage.getItem(KEY); if(raw){ var p=JSON.parse(raw); if(p&&p.days&&p.ms) store=p; } }catch(e){}
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){} }
+
+  var PH=[['Rebuild',8],['Vocabulary',12],['Independence',16],['Musician',16]];
+  var pk=$('phaseKey');
+  PH.forEach(function(p){
+    var s=document.createElement('span'); s.textContent=p[0]; s.style.width=(p[1]*(16+3)-3+3)+'px'; s.style.display='inline-block';
+    pk.appendChild(s);
+  });
+  var heat=$('heat');
+  for(var w=0;w<52;w++){
+    for(var d=0;d<7;d++){
+      (function(w,d){
+        var k=w+'-'+d, b=document.createElement('button'); b.type='button'; b.className='day';
+        b.setAttribute('aria-label','Week '+(w+1)+', day '+(d+1));
+        b.setAttribute('aria-pressed',store.days[k]?'true':'false');
+        b.title='Week '+(w+1)+', day '+(d+1);
+        b.addEventListener('click',function(){
+          if(store.days[k]) delete store.days[k]; else store.days[k]=1;
+          b.setAttribute('aria-pressed',store.days[k]?'true':'false'); save(); stat();
+        });
+        heat.appendChild(b);
+      })(w,d);
+    }
+  }
+  function stat(){
+    var n=Object.keys(store.days).length, hrs=(n*0.5).toFixed(1).replace(/\.0$/,'');
+    $('stat').textContent='Days logged: '+n+' · About '+hrs+' hours of practice';
+  }
+  stat();
+
+  var MS=[
+    ['p1a','Phase 1: singles 80, doubles 72, paradiddles 76 (16ths), clean for a minute'],
+    ['p1b','Phase 1: basic rock beat at 100 bpm for three minutes with the click'],
+    ['p1c','Phase 1: four kick variations under 8th hi-hat at 90 bpm'],
+    ['p2a','Phase 2: singles 100, doubles 88, paradiddles 96'],
+    ['p2b','Phase 2: five rudiments clean at 70 to 80 bpm'],
+    ['p2c','Phase 2: funk groove with ghost notes at 80 bpm and shuffle at 90 bpm'],
+    ['p3a','Phase 3: swing ride with hi-hat foot at 120 bpm for two minutes'],
+    ['p3b','Phase 3: 5/4 groove at 100 bpm for two minutes'],
+    ['p3c','Phase 3: Syncopation page with ostinato and kick/snare reading at 70 bpm'],
+    ['p4a','Phase 4: ten songs played start to finish'],
+    ['p4b','Phase 4: transcribed a groove and a fill by ear'],
+    ['p4c','Phase 4: played with another musician or a backing track three times']
+  ];
+  var ul=$('ms');
+  MS.forEach(function(m){
+    var li=document.createElement('li'), lab=document.createElement('label'), inp=document.createElement('input');
+    inp.type='checkbox'; inp.checked=!!store.ms[m[0]];
+    inp.addEventListener('change',function(){ if(inp.checked) store.ms[m[0]]=1; else delete store.ms[m[0]]; save(); });
+    lab.appendChild(inp); lab.appendChild(document.createTextNode(m[1])); li.appendChild(lab); ul.appendChild(li);
+  });
+  var resetBtn=$('reset'), armed=false;
+  resetBtn.addEventListener('click',function(){
+    if(!armed){ armed=true; resetBtn.textContent='Tap again to clear everything';
+      setTimeout(function(){armed=false;resetBtn.textContent='Clear tracker';},4000); return; }
+    store={days:{},ms:{}}; save(); armed=false; resetBtn.textContent='Clear tracker';
+    document.querySelectorAll('.day').forEach(function(b){b.setAttribute('aria-pressed','false');});
+    ul.querySelectorAll('input').forEach(function(i){i.checked=false;}); stat();
+  });
+})();
+</script>
+</body>
+</html>
